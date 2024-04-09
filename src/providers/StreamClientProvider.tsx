@@ -18,7 +18,7 @@ export const StreamVideoProvider = ({ children }: { children: ReactNode }) => {
 			apiKey,
 			user: {
 				id: user?.id,
-				name: user?.username || user?.id,
+				name: user?.fullName || user?.username || user?.id,
 				image: user?.imageUrl,
 			},
 			tokenProvider,
