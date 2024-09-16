@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { ClerkProvider } from "@clerk/nextjs";
 import { Toaster } from "@/components/ui/toaster";
+import { ThemeProvider } from "@/providers/ThemeProvider";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 
@@ -44,10 +45,17 @@ export default function RootLayout({
 				}}
 			>
 				<body className={`${inter.className} bg-dark-2`}>
-					{children}
-					<Toaster />
-					<Analytics />
-					<SpeedInsights />
+					<ThemeProvider
+						attribute="class"
+						defaultTheme="system"
+						enableSystem
+						disableTransitionOnChange
+					>
+						{children}
+						<Toaster />
+						<Analytics />
+						<SpeedInsights />
+					</ThemeProvider>
 				</body>
 			</ClerkProvider>
 		</html>
