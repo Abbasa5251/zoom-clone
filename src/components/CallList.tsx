@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import MeetingCard from "./MeetingCard";
 import Loader from "./Loader";
 import { useToast } from "./ui/use-toast";
+import { getMeetingLink } from "@/lib/utils";
 
 interface CallListProps {
 	type: "ended" | "upcoming" | "recordings";
@@ -120,9 +121,7 @@ const CallList = ({ type }: CallListProps) => {
 						link={
 							type === "recordings"
 								? (meeting as CallRecording)?.url
-								: `${
-										process.env.NEXT_PUBLIC_BASE_URL
-								  }/meeting/${(meeting as Call).id}`
+								: getMeetingLink((meeting as Call).id)
 						}
 						buttonText={type === "recordings" ? "Play" : "Start"}
 					/>

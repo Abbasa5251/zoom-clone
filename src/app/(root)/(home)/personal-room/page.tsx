@@ -6,6 +6,7 @@ import { useUser } from "@clerk/nextjs";
 import { useStreamVideoClient } from "@stream-io/video-react-sdk";
 import { useRouter } from "next/navigation";
 import React from "react";
+import { getMeetingLink } from "@/lib/utils";
 
 const Table = ({
 	title,
@@ -30,7 +31,7 @@ const PersonalRoom = () => {
 	const { user } = useUser();
 	const { toast } = useToast();
 	const meetingId = user?.id;
-	const meetingLink = `${process.env.NEXT_PUBLIC_BASE_URL}/meeting/${meetingId}`;
+	const meetingLink = getMeetingLink(meetingId);
 	const client = useStreamVideoClient();
 	const { call } = useGetCallById(meetingId!);
 	const router = useRouter();
